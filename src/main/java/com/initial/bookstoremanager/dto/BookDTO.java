@@ -1,10 +1,7 @@
 package com.initial.bookstoremanager.dto;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +25,10 @@ public class BookDTO {
     @NotNull
     private Integer chapters;
 
-    @NotBlank(  message = "ISBN is required")
+    @NotBlank
+    @Size(max = 100)
+    @Pattern(regexp ="(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
+            message = "ISBN format must be a valid format")
     private String isbn;
 
     @NotBlank
