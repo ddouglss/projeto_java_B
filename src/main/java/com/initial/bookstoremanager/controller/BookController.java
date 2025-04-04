@@ -1,8 +1,9 @@
 package com.initial.bookstoremanager.controller;
 
+import com.initial.bookstoremanager.dto.BookDTO;
 import com.initial.bookstoremanager.dto.MessageResponseDTO;
-import com.initial.bookstoremanager.entity.Book;
 import com.initial.bookstoremanager.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +22,10 @@ public class BookController {
     }
 
     @PostMapping // marcação do tipo POST
-    public MessageResponseDTO create(@RequestBody Book book){
-       return bookService.create(book);
+    public MessageResponseDTO create(@RequestBody @Valid BookDTO bookDTO){
+       return bookService.create(bookDTO);
     }
+
+
 
 }
